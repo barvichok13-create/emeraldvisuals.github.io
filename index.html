@@ -285,13 +285,67 @@
             border-top: 1px solid rgba(255, 255, 255, 0.05);
             margin-top: 50px;
         }
+
+        /* Уведомление о загрузке */
+        .download-notice {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: #13191e;
+            padding: 30px 40px;
+            border-radius: 15px;
+            border: 2px solid #00ff7f;
+            z-index: 3000;
+            text-align: center;
+            box-shadow: 0 0 50px rgba(0, 255, 127, 0.2);
+        }
+        .download-notice.show {
+            display: block;
+            animation: fadeIn 0.3s ease-out;
+        }
+        .download-notice h3 {
+            color: #00ff7f;
+            margin-bottom: 10px;
+        }
+        .download-notice p {
+            color: #a0a5ad;
+            margin-bottom: 20px;
+        }
+        .download-notice .btn-close-notice {
+            padding: 10px 30px;
+            background: #00ff7f;
+            border: none;
+            border-radius: 20px;
+            color: #0b0f12;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+        .download-notice .btn-close-notice:hover {
+            background: #12ff88;
+            transform: scale(1.05);
+        }
+        .overlay-bg {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 2999;
+        }
+        .overlay-bg.show {
+            display: block;
+        }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo">Emerald Visuals</div>
-        <!-- Discord ссылка в шапке -->
         <div class="header-discord">
             <a href="https://discord.gg/AvpTNmYeQ" target="_blank">Discord</a>
         </div>
@@ -300,8 +354,7 @@
     <section class="hero">
         <h1>Твой идеальный <span>Minecraft</span> визуал</h1>
         <p>Абсолютно бесплатный софт, созданный для идеального отображения и максимального комфорта во время игры. Улучшай картинку без потери кадров.</p>
-        <!-- Кнопка скачивания для emeraldvisuals-1.0.jar -->
-        <a href="emeraldvisuals-1.0.jar" download class="btn-download">Скачать бесплатно</a>
+        <button onclick="downloadFile()" class="btn-download">Скачать бесплатно</button>
     </section>
 
     <!-- СЕКЦИЯ ГАЛЕРЕИ -->
@@ -383,6 +436,14 @@
         <img class="lightbox-content" id="lightbox-img" src="" alt="Zoomed Image">
     </div>
 
+    <!-- Уведомление о загрузке -->
+    <div class="overlay-bg" id="overlayBg"></div>
+    <div class="download-notice" id="downloadNotice">
+        <h3>✅ Файл готов к скачиванию!</h3>
+        <p>Нажмите "Сохранить файл" в появившемся окне браузера.<br>Если загрузка не началась, проверьте папку "Загрузки".</p>
+        <button class="btn-close-notice" onclick="closeNotice()">Понятно</button>
+    </div>
+
     <script>
         // Скрипт для появления карточек при скролле
         const cards = document.querySelectorAll('.card');
@@ -417,6 +478,26 @@
                 closeLightbox();
             }
         });
+
+        // ФУНКЦИЯ СКАЧИВАНИЯ
+        function downloadFile() {
+            // Показываем уведомление
+            document.getElementById('downloadNotice').classList.add('show');
+            document.getElementById('overlayBg').classList.add('show');
+            
+            // Создаем ссылку для скачивания
+            const link = document.createElement('a');
+            link.href = 'EmeraldVisual.jar';
+            link.download = 'EmeraldVisual.jar';
+            document.body.appendChild(link);
+            link.click();
+            document.body.removeChild(link);
+        }
+
+        function closeNotice() {
+            document.getElementById('downloadNotice').classList.remove('show');
+            document.getElementById('overlayBg').classList.remove('show');
+        }
     </script>
 </body>
 </html>
