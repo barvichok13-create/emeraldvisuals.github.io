@@ -7,7 +7,6 @@
     <style>
         /* Общие стили и плавный скролл */
         html { scroll-behavior: smooth; }
-        
         body {
             margin: 0;
             padding: 0;
@@ -16,12 +15,10 @@
             color: #ffffff;
             overflow-x: hidden;
         }
-
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
-
         /* Шапка */
         header {
             display: flex;
@@ -36,31 +33,12 @@
             z-index: 1000;
             transition: all 0.3s ease;
         }
-
         .logo {
             font-size: 24px;
             font-weight: bold;
             color: #00ff7f;
             text-shadow: 0 0 10px rgba(0, 255, 127, 0.3);
         }
-
-        /* Стили для Discord ссылки в шапке */
-        .header-discord {
-            font-size: 0.9rem;
-            color: #a0a5ad;
-            transition: color 0.3s;
-        }
-        .header-discord a {
-            color: #7289da;
-            text-decoration: none;
-            font-weight: 500;
-            transition: color 0.3s;
-        }
-        .header-discord a:hover {
-            color: #00ff7f;
-            text-decoration: underline;
-        }
-
         /* Главный экран */
         .hero {
             height: 100vh;
@@ -73,13 +51,11 @@
             background: radial-gradient(circle at center, rgba(0, 255, 127, 0.1) 0%, rgba(11, 15, 18, 1) 70%);
             animation: fadeIn 1.2s ease-out;
         }
-
         .hero h1 {
             font-size: 3.5rem;
             margin-bottom: 10px;
             letter-spacing: 1px;
         }
-
         .hero h1 span { color: #00ff7f; text-shadow: 0 0 20px rgba(0, 255, 127, 0.4); }
         .hero p {
             font-size: 1.2rem;
@@ -88,7 +64,6 @@
             margin-bottom: 40px;
             line-height: 1.6;
         }
-
         .btn-download {
             display: inline-block;
             padding: 16px 40px;
@@ -103,32 +78,20 @@
             box-shadow: 0 4px 15px rgba(0, 255, 127, 0.4);
             transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1);
         }
-
         .btn-download:hover {
             transform: translateY(-4px) scale(1.03);
             box-shadow: 0 8px 25px rgba(0, 255, 127, 0.6);
             background-color: #12ff88;
         }
-
-        /* Заголовок секции преимуществ */
-        .features-title {
-            text-align: center;
-            font-size: 2.5rem;
-            color: #00ff7f;
-            margin-bottom: 20px;
-            padding-top: 50px;
-        }
-
         /* Секция преимуществ */
         .features {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 20px 20px 100px 20px;
+            padding: 100px 20px;
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 40px;
         }
-
         .card {
             background: #13191e;
             padding: 40px 30px;
@@ -139,38 +102,33 @@
             opacity: 0;
             transform: translateY(30px);
         }
-
         .card.visible { opacity: 1; transform: translateY(0); }
         .card:hover { transform: translateY(-10px); border-color: rgba(0, 255, 127, 0.3); box-shadow: 0 10px 30px rgba(0, 255, 127, 0.05); }
         .card .icon { font-size: 40px; margin-bottom: 20px; display: inline-block; }
         .card h3 { font-size: 1.4rem; margin-bottom: 15px; color: #ffffff; }
         .card p { color: #a0a5ad; font-size: 0.95rem; line-height: 1.6; margin: 0; }
 
-/* ================= СЕКЦИЯ: ГАЛЕРЕЯ ================= */
+        /* ================= СЕКЦИЯ: ГАЛЕРЕЯ ================= */
         .gallery-section {
             padding: 100px 20px;
             max-width: 1200px;
             margin: 0 auto;
             text-align: center;
         }
-        
         .gallery-title {
             font-size: 2.5rem;
             margin-bottom: 15px;
             color: #00ff7f;
         }
-
         .gallery-subtitle {
             color: #a0a5ad;
             margin-bottom: 50px;
         }
-
         .gallery-grid {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 20px;
         }
-
         .gallery-item {
             position: relative;
             overflow: hidden;
@@ -181,7 +139,6 @@
             aspect-ratio: 16 / 9;
             background-color: #13191e;
         }
-
         .gallery-item img {
             width: 100%;
             height: 100%;
@@ -189,17 +146,14 @@
             display: block;
             transition: transform 0.4s;
         }
-
         .gallery-item:hover {
             transform: scale(1.02);
             box-shadow: 0 0 25px rgba(0, 255, 127, 0.2);
             border-color: #00ff7f;
         }
-
         .gallery-item:hover img {
             transform: scale(1.05);
         }
-
         .gallery-overlay {
             position: absolute;
             bottom: 0;
@@ -212,11 +166,9 @@
             transition: transform 0.3s ease;
             text-align: left;
         }
-
         .gallery-item:hover .gallery-overlay {
             transform: translateY(0);
         }
-
         .gallery-overlay h4 {
             margin: 0 0 5px 0;
             font-size: 1.1rem;
@@ -228,7 +180,7 @@
             color: #a0a5ad;
         }
 
-        /* ================= LIGHTBOX ================= */
+        /* ================= LIGHTBOX (Всплывающее окно) ================= */
         .lightbox {
             display: none;
             position: fixed;
@@ -244,12 +196,10 @@
             opacity: 0;
             transition: opacity 0.3s ease;
         }
-
         .lightbox.show {
             display: flex;
             opacity: 1;
         }
-
         .lightbox-content {
             max-width: 95%;
             max-height: 90%;
@@ -258,7 +208,6 @@
             border: 2px solid #00ff7f;
             animation: fadeIn 0.3s ease-out;
         }
-
         .lightbox-close {
             position: absolute;
             top: 20px;
@@ -270,11 +219,109 @@
             transition: 0.3s;
             z-index: 2001;
         }
-
         .lightbox-close:hover {
             color: #00ff7f;
             transform: rotate(90deg);
         }
+
+        /* ================= МОДАЛЬНОЕ ОКНО СКАЧИВАНИЯ ================= */
+        .download-modal-overlay {
+            display: none;
+            position: fixed;
+            z-index: 3000;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(15px);
+            align-items: center;
+            justify-content: center;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .download-modal-overlay.show {
+            display: flex;
+            opacity: 1;
+        }
+        .download-modal {
+            background: linear-gradient(145deg, #13191e 0%, #1a2027 100%);
+            border: 2px solid #00ff7f;
+            border-radius: 20px;
+            padding: 40px 30px;
+            text-align: center;
+            max-width: 420px;
+            width: 90%;
+            box-shadow: 0 20px 50px rgba(0, 255, 127, 0.3);
+            animation: fadeIn 0.4s ease-out;
+            position: relative;
+        }
+        .modal-close {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            background: none;
+            border: none;
+            color: #a0a5ad;
+            font-size: 28px;
+            cursor: pointer;
+            transition: 0.3s;
+            line-height: 1;
+        }
+        .modal-close:hover {
+            color: #00ff7f;
+            transform: rotate(90deg);
+        }
+        .modal-title {
+            font-size: 2rem;
+            margin-bottom: 10px;
+            color: #ffffff;
+        }
+        .modal-title span {
+            color: #00ff7f;
+        }
+        .modal-subtitle {
+            color: #a0a5ad;
+            margin-bottom: 35px;
+            font-size: 0.95rem;
+        }
+        .modal-buttons {
+            display: flex;
+            flex-direction: column;
+            gap: 16px;
+        }
+        .modal-btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+            padding: 16px 20px;
+            border-radius: 14px;
+            font-size: 1.1rem;
+            font-weight: bold;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            color: #fff;
+            background: #1e252c;
+            cursor: pointer;
+            letter-spacing: 0.5px;
+        }
+        .modal-btn:hover {
+            transform: translateY(-3px);
+            border-color: #00ff7f;
+            box-shadow: 0 10px 25px rgba(0, 255, 127, 0.25);
+            background: #232c35;
+        }
+        .modal-btn .btn-icon {
+            font-size: 1.8rem;
+            width: 36px;
+            text-align: center;
+        }
+        /* Индивидуальные цвета при наведении */
+        .modal-btn.discord:hover { border-color: #5865F2; box-shadow: 0 10px 25px rgba(88, 101, 242, 0.4); }
+        .modal-btn.google:hover { border-color: #4285F4; box-shadow: 0 10px 25px rgba(66, 133, 244, 0.4); }
+        .modal-btn.yandex:hover { border-color: #FF3333; box-shadow: 0 10px 25px rgba(255, 51, 51, 0.4); }
 
         /* Подвал */
         footer {
@@ -286,143 +333,100 @@
             margin-top: 50px;
         }
 
-        /* Уведомление о загрузке */
-        .download-notice {
-            display: none;
+        /* Уведомления */
+        .toast {
             position: fixed;
-            top: 50%;
+            bottom: 30px;
             left: 50%;
-            transform: translate(-50%, -50%);
+            transform: translateX(-50%);
             background: #13191e;
-            padding: 30px 40px;
-            border-radius: 15px;
             border: 2px solid #00ff7f;
-            z-index: 3000;
-            text-align: center;
-            box-shadow: 0 0 50px rgba(0, 255, 127, 0.2);
+            border-radius: 12px;
+            padding: 20px 30px;
+            color: #fff;
+            font-size: 14px;
+            line-height: 1.6;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+            z-index: 9999;
+            animation: fadeIn 0.3s ease;
+            max-width: 90%;
+            white-space: pre-line;
+            text-align: left;
         }
-        .download-notice.show {
-            display: block;
-            animation: fadeIn 0.3s ease-out;
-        }
-        .download-notice h3 {
-            color: #00ff7f;
-            margin-bottom: 10px;
-        }
-        .download-notice p {
-            color: #a0a5ad;
-            margin-bottom: 20px;
-        }
-        .download-notice .btn-close-notice {
-            padding: 10px 30px;
-            background: #00ff7f;
-            border: none;
-            border-radius: 20px;
-            color: #0b0f12;
-            font-weight: bold;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-        .download-notice .btn-close-notice:hover {
-            background: #12ff88;
-            transform: scale(1.05);
-        }
-        .overlay-bg {
-            display: none;
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.7);
-            z-index: 2999;
-        }
-        .overlay-bg.show {
-            display: block;
-        }
+        .toast.error { border-color: #ff4444; background: #2a1515; }
+        .toast.success { border-color: #00ff7f; }
     </style>
 </head>
 <body>
 
     <header>
         <div class="logo">Emerald Visuals</div>
-        <div class="header-discord">
-            <a href="https://discord.gg/AvpTNmYeQ" target="_blank">Discord</a>
-        </div>
     </header>
 
     <section class="hero">
         <h1>Твой идеальный <span>Minecraft</span> визуал</h1>
         <p>Абсолютно бесплатный софт, созданный для идеального отображения и максимального комфорта во время игры. Улучшай картинку без потери кадров.</p>
-        <button onclick="downloadFile()" class="btn-download">Скачать бесплатно</button>
+        <a href="#" id="download-link" class="btn-download">Скачать бесплатно</a>
     </section>
 
     <!-- СЕКЦИЯ ГАЛЕРЕИ -->
     <section class="gallery-section">
         <h2 class="gallery-title">Демонстрация функций</h2>
         <p class="gallery-subtitle">Нажми на любой скриншот, чтобы рассмотреть детали</p>
-        
         <div class="gallery-grid">
             <div class="gallery-item" onclick="openLightbox(this)">
                 <img src="1.png" alt="Target ESP">
                 <div class="gallery-overlay">
                     <h4>Target ESP</h4>
-                    <p>Подсветка целей через стены с дополнительными визуальными эффектами: при наведении на игрока появляется стильный контур, анимация свечения и информативные метки для быстрого реагирования в бою.</p>
+                    <p>Подсветка целей через стены с дополнительными визуальными эффектами.</p>
                 </div>
             </div>
-
             <div class="gallery-item" onclick="openLightbox(this)">
                 <img src="2.png" alt="Target ESP View">
                 <div class="gallery-overlay">
                     <h4>Target ESP (Вид)</h4>
-                    <p>Улучшенная версия ESP: цветные контуры, адаптивная подсветка и динамические индикаторы здоровья. Эффектные визуалы вокруг цели помогают мгновенно оценить обстановку и принять верное решение.</p>
+                    <p>Цветные контуры, адаптивная подсветка и индикаторы здоровья.</p>
                 </div>
             </div>
-
             <div class="gallery-item" onclick="openLightbox(this)">
                 <img src="3.png" alt="Aspect Ratio">
                 <div class="gallery-overlay">
-                    <h4>Растяжка экрана (Aspect Ratio)</h4>
-                    <p>Настройка соотношения сторон экрана для максимального удобства в PvP. Расширенный угол обзора позволяет лучше контролировать поле боя, замечать противников с флангов и быстрее реагировать на их действия.</p>
+                    <h4>Растяжка экрана</h4>
+                    <p>Расширенный угол обзора для PvP.</p>
                 </div>
             </div>
-
             <div class="gallery-item" onclick="openLightbox(this)">
                 <img src="4.png" alt="Themes">
                 <div class="gallery-overlay">
                     <h4>Кастомизация тем</h4>
-                    <p>Гибкая настройка меню: Изумрудная, Рубиновая, Золотая, Аметистовая и другие. Выбери стиль, который подходит именно тебе.</p>
+                    <p>Изумрудная, Рубиновая, Золотая и другие стили.</p>
                 </div>
             </div>
-
             <div class="gallery-item" onclick="openLightbox(this)">
                 <img src="5.png" alt="Death Effects">
                 <div class="gallery-overlay">
                     <h4>Эффекты при смерти</h4>
-                    <p>Стильные анимации и визуальные частицы при уничтожении мобов или игроков. Добавляют зрелищности и делают игровой процесс более насыщенным.</p>
+                    <p>Стильные анимации и визуальные частицы.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- ЗАГОЛОВОК "НАШИ ПРЕИМУЩЕСТВА" -->
-    <h2 class="features-title">Наши преимущества</h2>
-
     <section class="features">
         <div class="card">
             <span class="icon">⚡</span>
             <h3>Максимальная скорость</h3>
-            <p>Никаких просадок FPS. Оптимизированный код обеспечивает плавную работу даже на слабых ПК и ноутбуках.</p>
+            <p>Никаких просадок FPS. Оптимизированный код обеспечивает плавную работу даже на слабых ПК.</p>
         </div>
         <div class="card">
             <span class="icon">🛡️</span>
             <h3>Без вирусов</h3>
-            <p>Полная безопасность. Софт тщательно проверен через TotalVirus — чистый код без скрытых майнеров и троянов.</p>
+            <p>Полная безопасность. Софт проверен через TotalVirus — чистый код.</p>
         </div>
         <div class="card">
             <span class="icon">💎</span>
             <h3>Высокое качество</h3>
-            <p>Качественные текстуры, проработанные визуальные элементы и стабильная работа без вылетов и багов.</p>
+            <p>Качественные текстуры, стабильная работа без вылетов.</p>
         </div>
     </section>
 
@@ -430,22 +434,35 @@
         <p>&copy; 2026 Emerald Visuals. Не является официальным продуктом Minecraft. Не утверждено Mojang или связано с ней.</p>
     </footer>
 
-    <!-- LIGHTBOX HTML -->
+    <!-- LIGHTBOX -->
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="lightbox-close">&times;</span>
         <img class="lightbox-content" id="lightbox-img" src="" alt="Zoomed Image">
     </div>
 
-    <!-- Уведомление о загрузке -->
-    <div class="overlay-bg" id="overlayBg"></div>
-    <div class="download-notice" id="downloadNotice">
-        <h3>✅ Файл готов к скачиванию!</h3>
-        <p>Нажмите "Сохранить файл" в появившемся окне браузера.<br>Если загрузка не началась, проверьте папку "Загрузки".</p>
-        <button class="btn-close-notice" onclick="closeNotice()">Понятно</button>
+    <!-- МОДАЛЬНОЕ ОКНО ВЫБОРА ЗАГРУЗКИ -->
+    <div id="download-modal" class="download-modal-overlay">
+        <div class="download-modal">
+            <button class="modal-close" id="close-modal">&times;</button>
+            <h2 class="modal-title">Выбери <span>источник</span></h2>
+            <p class="modal-subtitle">Файл всегда доступен на этих площадках</p>
+            <div class="modal-buttons">
+                <!-- Ссылки обновлены -->
+                <a href="https://discord.gg/nW7QR7nFc" target="_blank" class="modal-btn discord">
+                    <span class="btn-icon">🎮</span> Скачать с Discord
+                </a>
+                <a href="https://drive.google.com/file/d/1SQNeSgUb2QY8K7fhcSfvim3b5OEdwGL-/view?usp=sharing" target="_blank" class="modal-btn google">
+                    <span class="btn-icon">📁</span> Скачать с Google Диска
+                </a>
+                <a href="https://disk.yandex.ru/d/-hd6kMQsczUKng" target="_blank" class="modal-btn yandex">
+                    <span class="btn-icon">💾</span> Скачать с Яндекс.Диска
+                </a>
+            </div>
+        </div>
     </div>
 
     <script>
-        // Скрипт для появления карточек при скролле
+        // Карточки при скролле
         const cards = document.querySelectorAll('.card');
         const observerOptions = { threshold: 0.1 };
         const observer = new IntersectionObserver((entries) => {
@@ -456,6 +473,57 @@
             });
         }, observerOptions);
         cards.forEach(card => { observer.observe(card); });
+
+        // ========== ОТКРЫТИЕ МОДАЛЬНОГО ОКНА СКАЧИВАНИЯ ==========
+        const downloadLink = document.getElementById('download-link');
+        const modalOverlay = document.getElementById('download-modal');
+        const closeModalBtn = document.getElementById('close-modal');
+
+        downloadLink.addEventListener('click', function(e) {
+            e.preventDefault();
+            modalOverlay.classList.add('show');
+            document.body.style.overflow = 'hidden';
+        });
+
+        function closeDownloadModal() {
+            modalOverlay.classList.remove('show');
+            document.body.style.overflow = 'auto';
+        }
+
+        closeModalBtn.addEventListener('click', closeDownloadModal);
+
+        // Закрытие по клику на оверлей (вне модального окна)
+        modalOverlay.addEventListener('click', function(e) {
+            if (e.target === modalOverlay) {
+                closeDownloadModal();
+            }
+        });
+
+        // Закрытие по Escape
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                if (modalOverlay.classList.contains('show')) {
+                    closeDownloadModal();
+                }
+                if (document.getElementById('lightbox').classList.contains('show')) {
+                    closeLightbox();
+                }
+            }
+        });
+
+        // Функция уведомлений (оставил, может пригодиться)
+        function showToast(message, type = 'info') {
+            document.querySelectorAll('.toast').forEach(t => t.remove());
+            const toast = document.createElement('div');
+            toast.className = `toast ${type}`;
+            toast.textContent = message;
+            document.body.appendChild(toast);
+            setTimeout(() => {
+                toast.style.opacity = '0';
+                toast.style.transition = 'opacity 0.5s';
+                setTimeout(() => toast.remove(), 500);
+            }, 6000);
+        }
 
         // ЛОГИКА LIGHTBOX
         const lightbox = document.getElementById('lightbox');
@@ -473,31 +541,14 @@
             document.body.style.overflow = 'auto';
         }
 
-        document.addEventListener('keydown', function(e) {
-            if (e.key === 'Escape' && lightbox.classList.contains('show')) {
+        // Обработчик клика по оверлею лайтбокса
+        lightbox.addEventListener('click', function(e) {
+            if (e.target === lightbox) {
                 closeLightbox();
             }
         });
 
-        // ФУНКЦИЯ СКАЧИВАНИЯ
-        function downloadFile() {
-            // Показываем уведомление
-            document.getElementById('downloadNotice').classList.add('show');
-            document.getElementById('overlayBg').classList.add('show');
-            
-            // Создаем ссылку для скачивания
-            const link = document.createElement('a');
-            link.href = 'EmeraldVisual.jar';
-            link.download = 'EmeraldVisual.jar';
-            document.body.appendChild(link);
-            link.click();
-            document.body.removeChild(link);
-        }
-
-        function closeNotice() {
-            document.getElementById('downloadNotice').classList.remove('show');
-            document.getElementById('overlayBg').classList.remove('show');
-        }
+        console.log('✅ Ссылки обновлены: Discord, Google Диск, Яндекс.Диск');
     </script>
 </body>
 </html>
