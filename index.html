@@ -12,8 +12,28 @@
         [data-theme="gold"] { --primary-color: #ffd700; --primary-hover: #ffdf33; --primary-shadow: rgba(255, 215, 0, 0.4); --primary-shadow-glow: rgba(255, 215, 0, 0.6); --primary-light: rgba(255, 215, 0, 0.1); }
         [data-theme="diamond"] { --primary-color: #00ffff; --primary-hover: #33ffff; --primary-shadow: rgba(0, 255, 255, 0.4); --primary-shadow-glow: rgba(0, 255, 255, 0.6); --primary-light: rgba(0, 255, 255, 0.1); }
 
+        /* Защита от выделения текста (кроме интерактивных элементов) */
+        body {
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0b0f12;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+        /* Разрешаем выделение на кнопках, ссылках, полях ввода и т.п. */
+        a, button, input, textarea, .custom-select, .custom-option, .btn-download, .modal-btn {
+            -webkit-user-select: text;
+            -moz-user-select: text;
+            -ms-user-select: text;
+            user-select: text;
+        }
+
         html { scroll-behavior: smooth; }
-        body { margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #0b0f12; color: #ffffff; overflow-x: hidden; }
 
         @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
         @keyframes floatItem { 0% { transform: translateY(0); } 50% { transform: translateY(-8px); } 100% { transform: translateY(0); } }
@@ -54,7 +74,6 @@
         .btn-download { display: inline-block; padding: 16px 40px; font-size: 1.1rem; font-weight: bold; color: #0b0f12; background-color: var(--primary-color); border: none; border-radius: 30px; cursor: pointer; text-decoration: none; box-shadow: 0 4px 15px var(--primary-shadow); transition: all 0.4s cubic-bezier(0.25, 1, 0.5, 1); min-height: 44px; display: inline-flex; align-items: center; justify-content: center; }
         .btn-download:hover { transform: translateY(-4px) scale(1.03); box-shadow: 0 8px 25px var(--primary-shadow-glow); background-color: var(--primary-hover); }
 
-        /* ================= СЕКЦИЯ СРАВНЕНИЯ ================= */
         .comparison-section { padding: 80px 20px; text-align: center; max-width: 900px; margin: 0 auto; }
         .comparison-title { font-size: 2.5rem; margin-bottom: 40px; color: var(--primary-color); transition: color 0.3s; }
         .comparison-container { position: relative; width: 100%; max-width: 800px; margin: 0 auto; height: 450px; overflow: hidden; border-radius: 15px; border: 4px solid var(--primary-color); box-shadow: 0 0 30px var(--primary-shadow); }
@@ -121,10 +140,8 @@
             .hero p { font-size: 1rem; max-width: 100%; margin-bottom: 30px; }
             .btn-download { padding: 14px 28px; font-size: 1rem; min-height: 44px; }
 
-            /* Скрываем фоновые изображения на мобильных, чтобы не мешали */
             .mc-image-bg { display: none; }
 
-            /* Discord-баннер в hero — уменьшаем и смещаем */
             .hero a[href*="discord.gg"] { top: 10% !important; left: 50% !important; transform: translateX(-50%) scale(0.6) !important; transform-origin: top center; }
             .hero a[href*="discord.gg"] img { width: 120px !important; height: 120px !important; }
             .hero a[href*="discord.gg"] div { font-size: 16px !important; }
@@ -194,27 +211,27 @@
 <body>
     <header>
         <a href="#" class="logo-link" title="Emerald Visuals — Главная">
-            <img src="90.png" alt="Emerald Visuals Logo" class="logo-img">
+            <img src="90.png" alt="Emerald Visuals Logo" class="logo-img" draggable="false">
             <span class="logo-text">Emerald Visuals</span>
         </a>
         <div class="controls">
             <div class="custom-select-wrapper" id="theme-wrapper">
                 <div class="custom-select" id="theme-trigger">
-                    <img src="444.webp" class="theme-icon" id="trigger-theme-icon" alt="Emerald">
+                    <img src="444.webp" class="theme-icon" id="trigger-theme-icon" alt="Emerald" draggable="false">
                     <span data-i18n="themeEmerald">Изумрудная тема</span>
                 </div>
                 <div class="custom-options" id="theme-options">
-                    <div class="custom-option selected" data-value="emerald" data-i18n="themeEmerald">
-                        <img src="444.webp" class="theme-icon" alt="Emerald"> Изумрудная тема
+                    <div class="custom-option selected" data-value="emerald">
+                        <img src="444.webp" class="theme-icon" alt="Emerald" draggable="false"> <span data-i18n="themeEmerald">Изумрудная тема</span>
                     </div>
-                    <div class="custom-option" data-value="ruby" data-i18n="themeRuby">
-                        <img src="67.jpg" class="theme-icon" alt="Ruby"> Рубиновая тема
+                    <div class="custom-option" data-value="ruby">
+                        <img src="67.jpg" class="theme-icon" alt="Ruby" draggable="false"> <span data-i18n="themeRuby">Рубиновая тема</span>
                     </div>
-                    <div class="custom-option" data-value="gold" data-i18n="themeGold">
-                        <img src="65.png" class="theme-icon" alt="Gold"> Золотая тема
+                    <div class="custom-option" data-value="gold">
+                        <img src="65.png" class="theme-icon" alt="Gold" draggable="false"> <span data-i18n="themeGold">Золотая тема</span>
                     </div>
-                    <div class="custom-option" data-value="diamond" data-i18n="themeDiamond">
-                        <img src="432.png" class="theme-icon" alt="Diamond"> Алмазная тема
+                    <div class="custom-option" data-value="diamond">
+                        <img src="432.png" class="theme-icon" alt="Diamond" draggable="false"> <span data-i18n="themeDiamond">Алмазная тема</span>
                     </div>
                 </div>
             </div>
@@ -230,14 +247,14 @@
 
     <section class="hero">
         <a href="https://discord.gg/BJGWnX7VMT" target="_blank" style="position: absolute; top: 15%; left: 50%; transform: translateX(-50%); z-index: 10; text-decoration: none; color: white; text-align: center; font-family: 'Arial Black', sans-serif; transition: transform 0.3s;">
-            <img src="43.png" alt="Discord" style="width: 200px; height: 200px; border-radius: 50%; border: 4px solid var(--primary-color); box-shadow: 0 0 30px var(--primary-shadow); margin-bottom: 15px;">
+            <img src="43.png" alt="Discord" style="width: 200px; height: 200px; border-radius: 50%; border: 4px solid var(--primary-color); box-shadow: 0 0 30px var(--primary-shadow); margin-bottom: 15px;" draggable="false">
             <div style="font-size: 22px; font-weight: 800; letter-spacing: 1px; text-transform: uppercase; text-shadow: 0 0 10px rgba(0,0,0,0.8);">НАШ DISCORD</div>
         </a>
 
         <div class="hero-particles">
-            <img src="56.jpg" class="mc-image-bg" alt="Background Item 1">
-            <img src="68.jpg" class="mc-image-bg" alt="Background Item 2">
-            <img src="80.webp" class="mc-image-bg" alt="Background Item 3" style="object-fit: contain;">
+            <img src="56.jpg" class="mc-image-bg" alt="Background Item 1" draggable="false">
+            <img src="68.jpg" class="mc-image-bg" alt="Background Item 2" draggable="false">
+            <img src="80.webp" class="mc-image-bg" alt="Background Item 3" style="object-fit: contain;" draggable="false">
         </div>
         <div class="hero-content">
             <h1 data-i18n="heroTitle">Твой идеальный <span>Minecraft</span> визуал</h1>
@@ -246,30 +263,27 @@
         </div>
     </section>
 
-    <!-- СЕКЦИЯ СРАВНЕНИЯ -->
     <section class="comparison-section">
         <h2 class="comparison-title" data-i18n="comparisonTitle">Сравнение</h2>
         <div class="comparison-container">
-            <img src="82.png" class="comparison-img" alt="Без визуала">
+            <img src="82.png" class="comparison-img" alt="Без визуала" draggable="false">
             <div class="img-top-wrapper" id="compare-wrapper" style="background-image: url('99.png');"></div>
             <input type="range" min="0" max="100" value="50" class="comparison-slider" id="slider" oninput="document.getElementById('compare-wrapper').style.width = this.value + '%'">
         </div>
     </section>
 
-    <!-- ГАЛЕРЕЯ -->
     <section class="gallery-section">
         <h2 class="gallery-title" data-i18n="galleryTitle">Демонстрация функций</h2>
         <p class="gallery-subtitle" data-i18n="gallerySubtitle">Нажми на любой скриншот, чтобы рассмотреть детали</p>
         <div class="gallery-grid">
-            <div class="gallery-item" onclick="openLightbox(this)"><img src="1.png" alt="Target ESP"><div class="gallery-overlay"><h4 data-i18n="gal1Title">Target ESP</h4><p data-i18n="gal1">Target ESP, красивая обводка игрока.</p></div></div>
-            <div class="gallery-item" onclick="openLightbox(this)"><img src="2.png" alt="Target ESP View"><div class="gallery-overlay"><h4 data-i18n="gal2Title">Target ESP</h4><p data-i18n="gal2">Target ESP, красивая обводка игрока.</p></div></div>
-            <div class="gallery-item" onclick="openLightbox(this)"><img src="3.png" alt="Aspect Ratio"><div class="gallery-overlay"><h4 data-i18n="gal3Title">Растяжка экрана</h4><p data-i18n="gal3">Растяжка экрана, просто растяг экрана для удобства в ПВП.</p></div></div>
-            <div class="gallery-item" onclick="openLightbox(this)"><img src="4.png" alt="Themes"><div class="gallery-overlay"><h4 data-i18n="gal4Title">Кастомизация тем</h4><p data-i18n="gal4">Изумрудная, Рубиновая и др.</p></div></div>
-            <div class="gallery-item" onclick="openLightbox(this)"><img src="5.png" alt="Death Effects"><div class="gallery-overlay"><h4 data-i18n="gal5Title">Эффекты при смерти</h4><p data-i18n="gal5">Стильная анимация после смерти игрока.</p></div></div>
+            <div class="gallery-item" onclick="openLightbox(this)"><img src="1.png" alt="Target ESP" draggable="false"><div class="gallery-overlay"><h4 data-i18n="gal1Title">Target ESP</h4><p data-i18n="gal1">Target ESP, красивая обводка игрока.</p></div></div>
+            <div class="gallery-item" onclick="openLightbox(this)"><img src="2.png" alt="Target ESP View" draggable="false"><div class="gallery-overlay"><h4 data-i18n="gal2Title">Target ESP</h4><p data-i18n="gal2">Target ESP, красивая обводка игрока.</p></div></div>
+            <div class="gallery-item" onclick="openLightbox(this)"><img src="3.png" alt="Aspect Ratio" draggable="false"><div class="gallery-overlay"><h4 data-i18n="gal3Title">Растяжка экрана</h4><p data-i18n="gal3">Растяжка экрана, просто растяг экрана для удобства в ПВП.</p></div></div>
+            <div class="gallery-item" onclick="openLightbox(this)"><img src="4.png" alt="Themes" draggable="false"><div class="gallery-overlay"><h4 data-i18n="gal4Title">Кастомизация тем</h4><p data-i18n="gal4">Изумрудная, Рубиновая и др.</p></div></div>
+            <div class="gallery-item" onclick="openLightbox(this)"><img src="5.png" alt="Death Effects" draggable="false"><div class="gallery-overlay"><h4 data-i18n="gal5Title">Эффекты при смерти</h4><p data-i18n="gal5">Стильная анимация после смерти игрока.</p></div></div>
         </div>
     </section>
 
-    <!-- НОВАЯ СЕКЦИЯ "НАШИ ПРЕИМУЩЕСТВА" -->
     <section class="advantages-section">
         <h2 class="advantages-title" data-i18n="advTitle">Наши преимущества</h2>
         <div class="advantages-grid">
@@ -312,7 +326,7 @@
 
     <div id="lightbox" class="lightbox" onclick="closeLightbox()">
         <span class="lightbox-close">&times;</span>
-        <img class="lightbox-content" id="lightbox-img" src="" alt="Zoomed Image">
+        <img class="lightbox-content" id="lightbox-img" src="" alt="Zoomed Image" draggable="false">
     </div>
 
     <div id="download-modal" class="download-modal-overlay">
@@ -329,6 +343,74 @@
     </div>
 
     <script>
+        // ================= ЗАЩИТА ОТ КОПИРОВАНИЯ =================
+        (function() {
+            // 1. Блокировка контекстного меню (ПКМ)
+            document.addEventListener('contextmenu', (e) => {
+                e.preventDefault();
+                return false;
+            });
+
+            // 2. Блокировка выделения текста (дополнительно к CSS)
+            document.addEventListener('selectstart', (e) => {
+                // Разрешаем выделение на интерактивных элементах
+                const tag = e.target.tagName.toLowerCase();
+                if (tag === 'a' || tag === 'button' || tag === 'input' || tag === 'textarea' || 
+                    e.target.closest('.custom-select') || e.target.closest('.custom-option') ||
+                    e.target.closest('.btn-download') || e.target.closest('.modal-btn')) {
+                    return;
+                }
+                e.preventDefault();
+            });
+
+            // 3. Блокировка горячих клавиш
+            document.addEventListener('keydown', (e) => {
+                // Ctrl+C, Ctrl+U, Ctrl+S, Ctrl+Shift+I, F12, Ctrl+Shift+C (инспектор)
+                if (e.ctrlKey && (e.key === 'c' || e.key === 'C' || e.key === 'u' || e.key === 'U' || e.key === 's' || e.key === 'S')) {
+                    e.preventDefault();
+                    return false;
+                }
+                if (e.ctrlKey && e.shiftKey && (e.key === 'I' || e.key === 'i' || e.key === 'C' || e.key === 'c')) {
+                    e.preventDefault();
+                    return false;
+                }
+                if (e.key === 'F12' || e.key === 'f12') {
+                    e.preventDefault();
+                    return false;
+                }
+                // Блокировка Ctrl+Shift+J (консоль)
+                if (e.ctrlKey && e.shiftKey && (e.key === 'J' || e.key === 'j')) {
+                    e.preventDefault();
+                    return false;
+                }
+                // Блокировка Ctrl+Shift+U (просмотр исходного кода в некоторых браузерах)
+                if (e.ctrlKey && e.shiftKey && (e.key === 'U' || e.key === 'u')) {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            // 4. Блокировка перетаскивания изображений (draggable="false" уже добавлен, но дополнительно)
+            document.addEventListener('dragstart', (e) => {
+                if (e.target.tagName === 'IMG') {
+                    e.preventDefault();
+                    return false;
+                }
+            });
+
+            // 5. Блокировка копирования через событие copy
+            document.addEventListener('copy', (e) => {
+                e.preventDefault();
+                return false;
+            });
+
+            // 6. Блокировка вызова инструментов разработчика через сочетания (дополнительно)
+            // Отключаем возможность открыть консоль через F12 и другие комбинации
+
+            console.log('Защита от копирования активирована.');
+        })();
+
+        // ================= ОСТАЛЬНОЙ СКРИПТ (переводы, темы, модалки и т.д.) =================
         const translations = {
             ru: {
                 pageTitle: "Emerald Visuals — Бесплатный визуал для Minecraft",
@@ -418,8 +500,13 @@
             document.documentElement.setAttribute('data-theme', currentTheme);
             
             const triggerText = document.getElementById('theme-trigger').querySelector('span');
-            const i18nKey = optionElement.getAttribute('data-i18n');
-            if (i18nKey) triggerText.innerHTML = translations[currentLang][i18nKey];
+            const i18nSpan = optionElement.querySelector('[data-i18n]');
+            if (i18nSpan) {
+                const key = i18nSpan.getAttribute('data-i18n');
+                if (translations[currentLang][key]) {
+                    triggerText.innerHTML = translations[currentLang][key];
+                }
+            }
             
             const triggerIcon = document.getElementById('trigger-theme-icon');
             if (triggerIcon) {
@@ -436,7 +523,9 @@
             document.getElementById('lang-trigger').querySelector('span').textContent = optionElement.textContent;
             document.querySelectorAll('[data-i18n]').forEach(el => {
                 const key = el.getAttribute('data-i18n');
-                if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
+                if (translations[currentLang][key]) {
+                    el.innerHTML = translations[currentLang][key];
+                }
             });
         });
 
