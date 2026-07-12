@@ -39,10 +39,14 @@
         .custom-select.active::after { transform: rotate(180deg); }
         .custom-options { position: absolute; top: calc(100% + 10px); left: 0; right: 0; background: rgba(19, 25, 30, 0.95); backdrop-filter: blur(10px); border: 1px solid var(--primary-shadow); border-radius: 12px; display: none; z-index: 1001; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
         .custom-options.show { display: block; animation: menuSlideDown 0.3s cubic-bezier(0.25, 1, 0.5, 1) forwards; }
-        .custom-option { padding: 12px 20px; cursor: pointer; transition: all 0.2s; border-bottom: 1px solid rgba(255, 255, 255, 0.05); }
+        .custom-option { padding: 12px 20px; cursor: pointer; transition: all 0.2s; border-bottom: 1px solid rgba(255, 255, 255, 0.05); display: flex; align-items: center; }
         .custom-option:last-child { border-bottom: none; }
         .custom-option:hover { background: var(--primary-light); color: var(--primary-color); padding-left: 25px; }
         .custom-option.selected { background: var(--primary-shadow); font-weight: bold; }
+
+        /* Стили для иконок тем */
+        .theme-icon { width: 24px; height: 24px; margin-right: 12px; vertical-align: middle; image-rendering: pixelated; object-fit: contain; flex-shrink: 0; border-radius: 4px; }
+        #trigger-theme-icon { width: 20px; height: 20px; }
 
         .hero-content { position: relative; z-index: 2; margin-top: 100px; }
         .hero h1 { font-size: 3.5rem; margin-bottom: 10px; letter-spacing: 1px; }
@@ -120,12 +124,24 @@
         </a>
         <div class="controls">
             <div class="custom-select-wrapper" id="theme-wrapper">
-                <div class="custom-select" id="theme-trigger"><span data-i18n="themeEmerald">Изумрудная тема</span></div>
+                <!-- Иконка изумруда исправлена на .webp -->
+                <div class="custom-select" id="theme-trigger">
+                    <img src="444.webp" class="theme-icon" id="trigger-theme-icon" alt="Emerald">
+                    <span data-i18n="themeEmerald">Изумрудная тема</span>
+                </div>
                 <div class="custom-options" id="theme-options">
-                    <div class="custom-option selected" data-value="emerald" data-i18n="themeEmerald">Изумрудная тема</div>
-                    <div class="custom-option" data-value="ruby" data-i18n="themeRuby">Рубиновая тема</div>
-                    <div class="custom-option" data-value="gold" data-i18n="themeGold">Золотая тема</div>
-                    <div class="custom-option" data-value="diamond" data-i18n="themeDiamond">Алмазная тема</div>
+                    <div class="custom-option selected" data-value="emerald" data-i18n="themeEmerald">
+                        <img src="444.webp" class="theme-icon" alt="Emerald"> Изумрудная тема
+                    </div>
+                    <div class="custom-option" data-value="ruby" data-i18n="themeRuby">
+                        <img src="67.jpg" class="theme-icon" alt="Ruby"> Рубиновая тема
+                    </div>
+                    <div class="custom-option" data-value="gold" data-i18n="themeGold">
+                        <img src="65.png" class="theme-icon" alt="Gold"> Золотая тема
+                    </div>
+                    <div class="custom-option" data-value="diamond" data-i18n="themeDiamond">
+                        <img src="432.png" class="theme-icon" alt="Diamond"> Алмазная тема
+                    </div>
                 </div>
             </div>
             <div class="custom-select-wrapper" id="lang-wrapper">
@@ -326,9 +342,21 @@
         setupDropdown('theme-trigger', 'theme-options', (themeValue, optionElement) => {
             currentTheme = themeValue;
             document.documentElement.setAttribute('data-theme', currentTheme);
+            
+            // Обновляем текст
             const triggerText = document.getElementById('theme-trigger').querySelector('span');
             const i18nKey = optionElement.getAttribute('data-i18n');
             if (i18nKey) triggerText.innerHTML = translations[currentLang][i18nKey];
+            
+            // Обновляем иконку
+            const triggerIcon = document.getElementById('trigger-theme-icon');
+            if (triggerIcon) {
+                const optionIcon = optionElement.querySelector('img');
+                if (optionIcon) {
+                    triggerIcon.src = optionIcon.src;
+                    triggerIcon.alt = optionIcon.alt;
+                }
+            }
         });
 
         setupDropdown('lang-trigger', 'lang-options', (langValue, optionElement) => {
@@ -339,8 +367,6 @@
                 if (translations[currentLang][key]) el.innerHTML = translations[currentLang][key];
             });
         });
-
-        // Убран IntersectionObserver для старых .card, так как их больше нет
 
         const downloadLink = document.getElementById('download-link');
         const modalOverlay = document.getElementById('download-modal');
